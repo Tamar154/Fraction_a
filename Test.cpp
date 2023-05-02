@@ -1,5 +1,7 @@
 #include "doctest.h"
 #include "sources/Fraction.hpp"
+#include <sstream>
+
 using namespace ariel;
 
 TEST_CASE("Constructor")
@@ -117,8 +119,43 @@ TEST_CASE("Comparison operations on floats and fractions")
 
 TEST_CASE("Increment and Decrement")
 {
+    Fraction a(1, 2);
+
+    // prefix
+    ++a;
+    CHECK(a == Fraction(3, 2));
+    --a;
+    CHECK(a == Fraction(1, 2));
+
+    // postfix
+    CHECK(a++ == Fraction(1, 2));
+    CHECK(a == Fraction(3, 2));
+    CHECK(a-- == Fraction(3, 2));
+    CHECK(a == Fraction(1, 2));
 }
 
 TEST_CASE("Stream")
 {
+    Fraction a(1, 2);
+    Fraction b(-1, 2);
+
+    // output
+    std::ostringstream output1;
+    output1 << a;
+    CHECK(output1.str() == "1/2");
+
+    std::ostringstream output2;
+    output2 << b;
+    CHECK(output2.str() == "-1/2");
+
+    // input
+    std::istringstream input1("1/2");
+    Fraction c;
+    input1 >> c;
+    CHECK(c == Fraction(1, 2));
+
+    std::istringstream input2("-1/2");
+    Fraction d;
+    input2 >> d;
+    CHECK(d == Fraction(-1, 2));
 }

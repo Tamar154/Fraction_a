@@ -12,9 +12,8 @@ namespace ariel
         int denominator;
 
     public:
-        Fraction(const int numerator, int denominator) : numerator(numerator), denominator(denominator)
-        {
-        } // &? const?
+        Fraction() : numerator(0), denominator(1) {}
+        Fraction(const int numerator, int denominator) : numerator(numerator), denominator(denominator) {}
 
         /*
             + oprator
@@ -83,13 +82,13 @@ namespace ariel
           ++ oprator
         */
         Fraction operator++() { return Fraction(1, 1); }
-        Fraction operator++(int flag) { return Fraction(1, 1); }
+        Fraction operator++(int postfix) { return Fraction(1, 1); }
 
         /*
            -- oprator
          */
         Fraction operator--() { return Fraction(1, 1); }
-        Fraction operator--(int flag) { return Fraction(1, 1); }
+        Fraction operator--(int postfix) { return Fraction(1, 1); }
 
         /*
            << oprator
